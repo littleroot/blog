@@ -4,8 +4,13 @@
 
 ```
 bundle install
-bundle exec jekyll serve [--drafts]
+bundle exec jekyll serve
 ```
+
+### New content
+
+Create a page in `_pages`. Add it to `_data/pages.yml` to make it
+visible in the home page.
 
 ### License
 
