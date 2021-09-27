@@ -1,6 +1,7 @@
 ---
-layout: post
+layout: page
 title: Example content
+permalink: /example-content/
 ---
 
 **Howdy!** This is an example blog post that shows several types of HTML content supported in this theme.
