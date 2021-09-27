@@ -1,4 +1,4 @@
-[`blog.littleroot.org`](https://blog.littleroot.org)
+[*blog.littleroot.org*](https://blog.littleroot.org)
 
 ### Development
 
