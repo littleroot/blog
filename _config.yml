@@ -1,10 +1,10 @@
 # Setup
-title: Poole
-tagline: The Jekyll Butler
-url: https://getpoole.com
-paginate: 1
+title: The Littleroot Blog
+tagline: ""
+url: https://blog.littleroot.org
+paginate: 100
 baseurl: ""
-permalink: pretty
+permalink: /:categories/:year/:month/:title
 
 # Gems
 plugins:
@@ -12,15 +12,17 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
 
-# Optimize Jekyll
+include: ['_pages']
+
 exclude:
   - .editorconfig
   - .git
   - .jekyll-cache
   - Gemfile
   - Gemfile.lock
-  - LICENSE.md
+  - poole-LICENSE.md
   - README.md
+  - CNAME
 
 sass:
   sass_dir: _sass
@@ -28,14 +30,7 @@ sass:
 
 # Options
 
-# Replace this value and uncomment to enable Google Analytics tracking
-# ga_analytics: UA-000000-0
-
 # Specify the author for blog posts
 author:
-  name: Mark Otto
-  url: https://twitter.com/mdo
-  email: markdotto@gmail.com
-
-# Custom vars
-version: 3.0.0
+  name: Nishanth Shanmugham
+  email: ns@mail.growl.space

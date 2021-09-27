@@ -1,14 +1,14 @@
 // Table of Contents
 
 #markdown-toc {
-  padding: var(--spacer-2) var(--spacer-3);
-  margin-bottom: var(--spacer-2);
-  border: solid var(--border-color);
+  padding: $spacer-2 $spacer-3;
+  margin-bottom: $spacer-2;
+  border: solid $border-color;
   border-width: 1px 0;
 
   &::before {
     display: block;
-    margin-left: calc(var(--spacer-3) * -1);
+    margin-left: $spacer-3 * -1;
     content: "Contents";
     font-size: 85%;
     font-weight: 500;

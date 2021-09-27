@@ -3,9 +3,9 @@
 // Super small header above the content for site name and short description.
 
 .masthead {
-  padding-top: var(--spacer);
-  padding-bottom: var(--spacer);
-  margin-bottom: var(--spacer-3);
+  padding-top: $spacer;
+  padding-bottom: $spacer;
+  margin-bottom: $spacer-3;
 }
 
 .masthead-title {
@@ -14,6 +14,16 @@
   a {
     color: inherit;
     text-decoration: none;
+    &:before, &:after {
+      color: $color-main-accent;
+      font-weight: 900;
+    }
+    &:before {
+      content: "( ";
+    }
+    &:after {
+      content: " )";
+    }
   }
 
   small {

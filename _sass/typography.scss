@@ -6,7 +6,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   font-weight: 600;
   line-height: 1.25;
-  color: var(--heading-color);
+  color: $heading-color;
 }
 
 h1 {
@@ -31,6 +31,7 @@ h4, h5, h6 {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+  text-indent: 2em;
 }
 
 ul, ol, dl {
@@ -48,28 +49,28 @@ dd {
 
 hr {
   position: relative;
-  margin: var(--spacer-2) 0;
+  margin: $spacer-2 0;
   border: 0;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid $border-color;
 }
 
 abbr {
   font-size: 85%;
   font-weight: bold;
-  color: var(--gray-600);
+  color: $gray-600;
   text-transform: uppercase;
 
   &[title] {
     cursor: help;
-    border-bottom: 1px dotted var(--border-color);
+    border-bottom: 1px dotted $border-color;
   }
 }
 
 blockquote {
   padding: .5rem 1rem;
   margin: .8rem 0;
-  color: var(--gray-500);
-  border-left: .25rem solid var(--border-color);
+  color: $gray-500;
+  border-left: .25rem solid $border-color;
 
   p:last-child {
     margin-bottom: 0;
