@@ -10,7 +10,7 @@ you can use to run a Sublime Text command (mind, not directly a binary
 on the computer) after a file is saved.
 
 So, for example, to run the `hindent` formatter for Haskell code, you
-would put this in the "Settings - Syntax Specific" file for Haskell.
+could put this in the "Settings - Syntax Specific" file for Haskell.
 Note the `$file` variable, which is intended to indicate the current
 file.
 
