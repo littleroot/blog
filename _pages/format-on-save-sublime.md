@@ -1,5 +1,5 @@
 ---
-title: Run an external formatter on save in Sublime
+title: Run a language-specific formatter on save in Sublime
 layout: page
 permalink: /format-on-save-sublime/
 ---
