@@ -4,23 +4,20 @@ title: Home
 ---
 
 {% if site.data.pages.size %}
-  {% for item in site.data.pages %}
-  <div class="posts">
-    <article class="post index">
-      <h1 class="post-title">
-        <a href="{{ item.path }}">
-          {{ item.title }}
-        </a>
-      </h1>
-
+<div class="posts index">
+  <ul>
+    {% for item in site.data.pages %}
+    <li>
+      <a href="{{ item.path }}">
+        {{ item.title }}
+      </a>
       {% if false %}
-      <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">
-        {{ post.date | date_to_string }}
-      </time>
+      <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time>
       {% endif %}
-    </article>
-  </div>
-  {% endfor %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% else %}
-  <p>No posts.</p>
+<p>No posts.</p>
 {% endif %}

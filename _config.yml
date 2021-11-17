@@ -28,6 +28,13 @@ sass:
   sass_dir: _sass
   style: :compressed
 
+kramdown:
+  auto_ids: true
+  syntax_highlighter_opts:
+    disable: true
+
+
+
 # Options
 
 # Specify the author for blog posts

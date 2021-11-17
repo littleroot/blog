@@ -10,10 +10,13 @@
 
 .masthead-title {
   margin-bottom: 0;
+  font-family: $blog-title-font;
+  font-size: 1.17em;
 
   a {
     color: inherit;
     text-decoration: none;
+    background: none; // disable link style
     &:before, &:after {
       color: $color-main-accent;
       font-weight: 900;

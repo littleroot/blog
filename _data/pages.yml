@@ -1,3 +1,6 @@
 # Example:
 # - title: Lipsum
 #   path: /lipsum/
+
+- title: Run an external formatter on save in Sublime
+  path: /format-on-save-sublime/

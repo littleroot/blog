@@ -27,23 +27,20 @@ $blue-300: #74c0fc;
 $blue-400: #4dabf7;
 $yellow-100: #fff3bf;
 
-$color-primary: #001;
+$color-primary: #000;
 $color-main-accent: rgb(56, 56, 209);
 
 // Typeography
 
 $body-font: equity, serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+// $body-font: "proxima nova", sans-serif;
 $body-font-size: 18px;
-$body-line-height: 1.5;
 $body-color: $color-primary;
 
-$link-color: $color-main-accent;
-$link-hover-color: scale-color($color-main-accent, $saturation: 0%);
-
-$heading-font: "proxima nova", sans-serif;
+$heading-font: equity, serif;
 $heading-color: $gray-900;
 
-$blog-title-font: $body-font;
+$blog-title-font: equity, serif;
 
 $code-font: "PragmataPro", "Bitstream Vera Sans Mono", monospace;
 $code-color: $grape;

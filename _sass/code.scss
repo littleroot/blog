@@ -9,7 +9,7 @@ pre {
 }
 
 code {
-  font-size: 85%;
+  font-size: 80%;
 }
 
 pre {
@@ -17,6 +17,9 @@ pre {
   margin-top: 0;
   margin-bottom: $spacer-3;
   overflow: auto;
+  line-height: 1.1;
+  padding: 1em;
+  background: rgba(245, 245, 245, 1);
 }
 
 .highlight {
