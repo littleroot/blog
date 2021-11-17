@@ -6,8 +6,8 @@ permalink: /format-on-save-sublime/
 
 The [Hooks](https://github.com/twolfson/sublime-hooks) package for
 Sublime Text provides a hook called `on_post_save_async_language`, which
-you can use to run a Sublime Text command (mind, not a binary on the
-computer) after a file is saved.
+you can use to run a Sublime Text command (mind, not directly a binary
+on the computer) after a file is saved.
 
 So, for example, to run the `hindent` formatter for Haskell code, you
 would put this in the "Settings - Syntax Specific" file for Haskell.
