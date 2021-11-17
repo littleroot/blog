@@ -11,13 +11,18 @@
   }
 }
 
-.index ul {
-  list-style-type: none;
-}
-
 .index {
+  ul {
+    list-style-type: none;
+  }
   li + li {
     margin-top: .5rem;
+  }
+  li a {
+    @include underline(4px, #ccc);
+    &:hover {
+      background-image: linear-gradient(transparent, transparent 4px, rgba(68, 187, 255, 1) 4px, rgba(68, 187, 255, 1));
+    }
   }
 }
 
@@ -37,7 +42,6 @@
   text-decoration: none;
   &:hover,
   &:focus {
-    // color: $color-main-accent;
     text-decoration: underline;
   }
 }
@@ -49,7 +53,6 @@
   // margin-bottom: $spacer;
   color: $gray-600;
 }
-
 
 // Related posts
 .related {
