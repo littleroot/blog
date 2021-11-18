@@ -3,17 +3,16 @@ layout: default
 title: Home
 ---
 
-{% if site.data.pages.size %}
+{% if site.data.pages.filenames.size %}
 <div class="posts index">
   <ul>
-    {% for item in site.data.pages %}
+    {% for filename in site.data.pages.filenames %}
+    {% assign matching = site.pages | where: "name", filename %}
+    {% assign page = matching.first %}
     <li>
-      <a href="{{ item.path }}">
-        {{ item.title }}
+      <a href="{{ page.permalink }}">
+        {{ page.title }}
       </a>
-      {% if false %}
-      <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time>
-      {% endif %}
     </li>
     {% endfor %}
   </ul>
@@ -21,3 +20,7 @@ title: Home
 {% else %}
 <p>No posts.</p>
 {% endif %}
+
+<footer class="footer">
+  {% include copyright.html %}
+</footer>

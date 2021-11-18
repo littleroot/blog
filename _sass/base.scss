@@ -1,5 +1,4 @@
 // Body resets
-//
 // Update the foundational and global aspects of the page.
 
 * {
@@ -23,13 +22,12 @@ body {
   }
 }
 
-// No `:visited` state is required by default (browsers will use `a`)
 a {
   text-decoration: none;
   color: $body-color;
-  @include underline(4px, rgba(68, 187, 255, 1));
+  @include underline(4px, $link-blue);
   &:hover {
-    background-image: linear-gradient(transparent, transparent 4px, rgba(68, 187, 255, 1) 4px, rgba(68, 187, 255, 1));
+    background-image: linear-gradient(transparent, transparent 4px, $link-blue 4px, $link-blue);
   }
 }
 

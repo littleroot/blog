@@ -1,5 +1,4 @@
 // Colors
-
 $gray-000: #f8f9fa;
 $gray-100: #f1f3f5;
 $gray-200: #e9ecef;
@@ -10,7 +9,6 @@ $gray-600: #868e96;
 $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
-
 $red: #fa5252;
 $pink: #e64980;
 $grape: #be4bdb;
@@ -22,39 +20,27 @@ $teal: #12b886;
 $green: #40c057;
 $yellow: #fab005;
 $orange: #fd7e14;
-
 $blue-300: #74c0fc;
 $blue-400: #4dabf7;
 $yellow-100: #fff3bf;
-
-$color-primary: #000;
-$color-main-accent: rgb(56, 56, 209);
-
-// Typeography
-
-$body-font: equity, serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-// $body-font: "proxima nova", sans-serif;
-$body-font-size: 18px;
-$body-color: $color-primary;
-
-$heading-font: equity, serif;
-$heading-color: $gray-900;
-
-$blog-title-font: equity, serif;
-
-$code-font: "PragmataPro", "Bitstream Vera Sans Mono", monospace;
-$code-color: $grape;
-
-// Misc.
-
-$body-bg: #fff;
-$code-bg: $gray-000;
-
-$border-color: $gray-300;
-$border-radius: .25rem;
+$color-primary: #111;
+$color-main-accent: rgba(68, 187, 255, 1);
+$link-blue: rgba(68, 187, 255, 1);
 
 // Spacing
-
 $spacer: 1rem;
 $spacer-2: $spacer * 1.5;
 $spacer-3: $spacer * 3;
+
+$body-font: equity, serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$body-font-size: 18px;
+$body-color: $color-primary;
+$heading-font: equity, serif;
+$heading-color: $color-primary;
+$blog-title-font: equity, serif;
+$code-font: "PragmataPro", "Bitstream Vera Sans Mono", monospace;
+$code-color: $grape;
+$body-bg: #fff;
+$code-bg: $gray-000;
+$border-color: $gray-300;
+$border-radius: .25rem;

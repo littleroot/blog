@@ -1,35 +1,35 @@
 @font-face {
-    font-family: equity;
-    src: url("../fonts/equity/Equity Text B Regular.otf") format("opentype");
+	font-family: equity;
+	src: url("../fonts/equity/Equity Text B Regular.otf") format("opentype");
 }
 
 @font-face {
-    font-family: equity;
-    font-style: italic;
-    src: url("../fonts/equity/Equity Text B Italic.otf") format("opentype");
+	font-family: equity;
+	font-style: italic;
+	src: url("../fonts/equity/Equity Text B Italic.otf") format("opentype");
 }
 
 @font-face {
-    font-family: equity;
-    font-weight: bold;
-    src: url("../fonts/equity/Equity Text B Bold.otf") format("opentype");
+	font-family: equity;
+	font-weight: bold;
+	src: url("../fonts/equity/Equity Text B Bold.otf") format("opentype");
 }
 
 @font-face {
-    font-family: equity;
-    font-weight: bold;
-    font-style: italic;
-    src: url("../fonts/equity/Equity Text B Bold Italic.otf") format("opentype");
+	font-family: equity;
+	font-weight: bold;
+	font-style: italic;
+	src: url("../fonts/equity/Equity Text B Bold Italic.otf") format("opentype");
 }
 
 @font-face {
-    font-family: "Bitstream Vera Sans Mono";
-    src: url("../fonts/bitstream-vera-sans-mono/VeraMono-webfont.eot");
-    src: url("../fonts/bitstream-vera-sans-mono/VeraMono-webfont.eot?#iefix") format("embedded-opentype"),
-        url("../fonts/bitstream-vera-sans-mono/VeraMono-webfont.woff") format("woff"),
-        url("../fonts/bitstream-vera-sans-mono/VeraMono-webfont.ttf") format("truetype"),
-        url("../fonts/bitstream-vera-sans-mono/VeraMono-webfont.svg#bitstream_vera_sans_monoroman") format("svg");
-    font-style: normal;
+	font-family: "Bitstream Vera Sans Mono";
+	src: url("../fonts/bitstream-vera-sans-mono/VeraMono-webfont.eot");
+	src: url("../fonts/bitstream-vera-sans-mono/VeraMono-webfont.eot?#iefix") format("embedded-opentype"),
+	url("../fonts/bitstream-vera-sans-mono/VeraMono-webfont.woff") format("woff"),
+	url("../fonts/bitstream-vera-sans-mono/VeraMono-webfont.ttf") format("truetype"),
+	url("../fonts/bitstream-vera-sans-mono/VeraMono-webfont.svg#bitstream_vera_sans_monoroman") format("svg");
+	font-style: normal;
 }
 
 /**
@@ -64,9 +64,9 @@
  * Webfonts copyright: Copyright (c) Mark Simonson, 2005. All rights reserved.
  *
  * © 2021 MyFonts Inc
-*/
+ */
 
-/* @import must be at top of file, otherwise CSS will not work */
+ /* @import must be at top of file, otherwise CSS will not work */
 // NOTE: This should be added to head.html instead
 // @import url("//hello.myfonts.net/count/3f5ed2");
 
@@ -74,7 +74,7 @@
 	font-family: "proxima nova";
 	font-weight: normal;
 	font-style: normal;
-    font-variant: normal;
+	font-variant: normal;
 	src: url('../fonts/proxima-nova/regular.woff2') format('woff2'), url('../fonts/proxima-nova/regular.woff') format('woff');
 }
 
@@ -82,22 +82,22 @@
 	font-family: "proxima nova";
 	font-weight: bold;
 	font-style: normal;
-    font-variant: normal;
+	font-variant: normal;
 	src: url('../fonts/proxima-nova/bold.woff2') format('woff2'), url('../fonts/proxima-nova/bold.woff') format('woff');
 }
 
 @font-face {
-    font-family: "proxima nova sc";
-    font-weight: normal;
-    font-style: normal;
-    font-variant: small-caps;
-    src: url('../fonts/proxima-nova/regular-sc.woff2') format('woff2'), url('../fonts/proxima-nova/regular-sc.woff') format('woff');
+	font-family: "proxima nova sc";
+	font-weight: normal;
+	font-style: normal;
+	font-variant: small-caps;
+	src: url('../fonts/proxima-nova/regular-sc.woff2') format('woff2'), url('../fonts/proxima-nova/regular-sc.woff') format('woff');
 }
 
 @font-face {
-    font-family: "proxima nova sc";
-    font-weight: bold;
-    font-style: normal;
-    font-variant: small-caps;
-    src: url('../fonts/proxima-nova/bold-sc.woff2') format('woff2'), url('../fonts/proxima-nova/bold-sc.woff') format('woff');
+	font-family: "proxima nova sc";
+	font-weight: bold;
+	font-style: normal;
+	font-variant: small-caps;
+	src: url('../fonts/proxima-nova/bold-sc.woff2') format('woff2'), url('../fonts/proxima-nova/bold-sc.woff') format('woff');
 }

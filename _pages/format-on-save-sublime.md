@@ -25,11 +25,13 @@ file.
 Unfortunately, this doesn't work with Sublime Text build 4121, the
 latest version right now. The `$file` variable isn't expanded by the
 Sublime Text command `exec`, though it is [documented][2] as being
-supported.
+supported (update: I've since learned that `exec` will not expand
+variables; Sublime's build system process does the expansion
+before calling `exec`).
 
 A working alternative is to write a custom command that can run
 `hindent` with the current view's file. Place the following in a .py
-file in Sublime's `User/Packages` directory.
+file in Sublime's `Packages/User` directory.
 
 ```py
 import sublime
@@ -63,5 +65,10 @@ Now all that's left is to call this custom command on save:
         },
     ],
 
+_Update_: I've seen a better working alternative. Use this [custom
+command][4]. It's a stand-in replacement for `exec`, except that it
+expands variables.
+
 [2]: https://www.sublimetext.com/docs/build_systems.html#variables
 [3]: https://www.sublimetext.com/docs/api_reference.html#sublime.View
+[4]: https://github.com/STealthy-and-haSTy/SublimeScraps/blob/e534d359c3317e234d728782c1b841cbe175ac70/plugins/menu_exec.py
