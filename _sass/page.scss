@@ -10,22 +10,6 @@
   }
 }
 
-.index {
-  ul {
-    list-style-type: none;
-    font-size: 1.12em;
-  }
-  li + li {
-    margin-top: .5rem;
-  }
-  li a {
-    @include underline(4px, #ccc);
-    &:hover {
-      background-image: linear-gradient(transparent, transparent 4px, rgba(68, 187, 255, 1) 4px, rgba(68, 187, 255, 1));
-    }
-  }
-}
-
 // Blog post or page title
 .page-title,
 .post-title {
