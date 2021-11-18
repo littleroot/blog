@@ -25,9 +25,9 @@ file.
 Unfortunately, this doesn't work with Sublime Text build 4121, the
 latest version right now. The `$file` variable isn't expanded by the
 Sublime Text command `exec`, though it is [documented][2] as being
-supported (update: I've since learned that `exec` will not expand
-variables; Sublime's build system process does the expansion
-before calling `exec`).
+supported (_update_: I've since learned that `exec` will not expand
+variables; Sublime's build system process does the expansion before
+calling `exec`).
 
 A working alternative is to write a custom command that can run
 `hindent` with the current view's file. Place the following in a .py
