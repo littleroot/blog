@@ -1,8 +1,8 @@
 # Setup
-title: The Littleroot Blog
-tagline: ""
+title: Littleroot Blog
+tagline: "Docs and pages related to Littleroot"
 url: https://blog.littleroot.org
-paginate: 100
+paginate: 1
 baseurl: ""
 permalink: /:categories/:year/:month/:title
 
@@ -33,11 +33,8 @@ kramdown:
   syntax_highlighter_opts:
     disable: true
 
-
-
 # Options
-
 # Specify the author for blog posts
 author:
   name: Nishanth Shanmugham
-  email: ns@mail.growl.space
+  email: nishanth.gerrard@gmail.com
