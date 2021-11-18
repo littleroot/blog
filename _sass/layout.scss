@@ -9,6 +9,12 @@
   margin-right: auto;
 }
 
+@media (min-width: 1800px) {
+  .container {
+    max-width: 42rem;
+  }
+}
+
 footer {
   margin-top: $spacer-3;
   margin-bottom: $spacer-3;
