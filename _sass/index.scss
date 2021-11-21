@@ -9,7 +9,7 @@
   li a {
     @include underline(4px, rgba(204, 204, 204, .5)); // #ccc with alpha
     &:hover {
-      @include underline(4px, $link-blue);
+      background-image: linear-gradient(transparent, transparent 4px, $link-blue 4px, $link-blue);
     }
   }
 }
