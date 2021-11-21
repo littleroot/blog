@@ -4,7 +4,7 @@
     padding-left: 0;
   }
   li + li {
-    margin-top: .5rem;
+    margin-top: .75rem;
   }
   li a {
     @include underline(5px, #ccc);
