@@ -5,9 +5,7 @@ permalink: /example-content/
 ---
 
 **Howdy!** This is an example blog post that shows several types of HTML
-content supported in this theme.
-
-{: .message }
+content supported in this theme. {: .message }
 
 Cum sociis natoque penatibus et magnis <a href="#">dis parturient
 montes</a>, nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque

@@ -12,7 +12,7 @@ manually toggle the color scheme on the page UI.
 
 But there's a workaround. With a pkg.go.dev page open, you can run the
 following in the browser's JavaScript console (in Safari <kbd>cmd</kbd>
-+ <kbd>alt</kbd> + <kbd>c</kbd>) to switch the site's color scheme.
+\+ <kbd>alt</kbd> \+ <kbd>c</kbd>) to switch the site's color scheme.
 Reload the page after.
 
 ```
@@ -23,10 +23,10 @@ or
 document.cookie = "prefers-color-scheme=dark" // for dark scheme
 ```
 
-(I much like the light scheme on the site, though my operating system
-color scheme is dark.)
+I much like the light scheme on the site, though my operating system
+color scheme is dark.
 
-The cookies were once being used to allow users to toggle the color
+The cookies were once being used to let users to toggle the color
 scheme, but this was [rolled back][1] due to an issue. But the cookies
 still work partially.
 
