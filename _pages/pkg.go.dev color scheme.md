@@ -11,8 +11,9 @@ operating system color scheme). It does not allow you to
 manually toggle the color scheme on the page UI.
 
 But there's a workaround. With a pkg.go.dev page open, you can run the
-following in the browser's JavaScript console (in Safari <kbd>cmd</kbd>
-\+ <kbd>alt</kbd> \+ <kbd>c</kbd>) to switch the site's color scheme.
+<!-- NOTE: keep on same line. the '+' becomes a bullet otherwise -->
+following in the browser's JavaScript console (in Safari <kbd>cmd</kbd> + <kbd>alt</kbd> + <kbd>c</kbd>)
+to switch the site's color scheme.
 Reload the page after.
 
 ```
