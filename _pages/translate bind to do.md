@@ -107,7 +107,7 @@ same as the type of `x` and `y` in the lambda arguments.
 To get some inuition try adding this debug line in the middle of the
 `do` block.
 
-```
+```hs
   traceM (show x) -- from Debug.Trace
 ```
 
