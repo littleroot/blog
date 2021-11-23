@@ -110,7 +110,7 @@ ul, ol, dl {
   margin-bottom: 1rem;
 }
 
-li::marker {
+ul li::marker {
   // doesn't work in Safari, works in Chrome.
   content: "•  "
 }
