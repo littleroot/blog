@@ -30,8 +30,8 @@ sass:
 
 kramdown:
   auto_ids: true
-  syntax_highlighter_opts:
-    disable: true
+  # syntax_highlighter_opts:
+    # disable: true
 
 # Options
 # Specify the author for blog posts

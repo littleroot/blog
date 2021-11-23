@@ -6,9 +6,11 @@ permalink: /translate-bind-do/
 
 Let's define some types and functions we can use for illustration.
 
-The code is adapted from the Haskell Wikibook[^1], § 32.3.
+The code is adapted from the Haskell Wikibook[^1], § 32.3. (It is free,
+and I heartily recommend it compared to learnyouahaskell.com if you're
+looking for a starter book.)
 
-```
+```hs
 type Board = Int -- represents current game configuration
 
 -- returns the possible game board configurations for the next turn.
@@ -55,7 +57,7 @@ nextConfigs bd >>= (\ x -> nextConfigs x) >>= (\ y -> nextConfigs y)
 
 Now we translate to do-notation:
 
-```
+```hs
 do
   x <- nextConfigs bd
   y <- nextConfigs x
@@ -111,7 +113,7 @@ To get some inuition try adding this debug line in the middle of the
 
 Also try the code with other monads such as Maybe.
 
-```
+```hs
 nextConfigs :: Board -> Maybe Board
 nextConfigs bd = Just (bd + 1)
 ```
