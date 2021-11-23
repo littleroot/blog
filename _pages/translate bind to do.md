@@ -35,7 +35,7 @@ To find the list of possible game configurations after *three*
 turns, we could do:
 
 ```
-> nextConfigs bd >>= nextConfigs >>= nextConfigs
+ghci> nextConfigs bd >>= nextConfigs >>= nextConfigs
 [6,50,41,400,32,310,301,3000]
 ```
 

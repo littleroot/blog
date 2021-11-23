@@ -27,8 +27,8 @@ document.cookie = "prefers-color-scheme=dark" // for dark scheme
 I much like the light scheme on the site, though my operating system
 color scheme is dark.
 
-The cookies were once being used to let users to toggle the color
-scheme, but this was [rolled back][1] due to an issue. But the cookies
-still work partially.
+The cookies were once being used to let users toggle the color
+scheme, but the feature was [rolled back][1] due to an issue. But the
+cookies still work partially.
 
 [1]: https://github.com/golang/pkgsite/commit/a0af5929e0f9b881e04e37c80ce9dfb1d2dc36f2
