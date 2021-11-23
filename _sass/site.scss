@@ -14,6 +14,7 @@ body {
   background-color: $body-bg;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+  font-feature-settings: "liga";
 }
 
 @media (min-width: 30em) {
@@ -107,6 +108,11 @@ p {
 ul, ol, dl {
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+li::marker {
+  // doesn't work in Safari, works in Chrome.
+  content: "•  "
 }
 
 dt {
@@ -240,12 +246,14 @@ a[href^="#fn:"],
 a[href^="#fnref:"] {
   display: inline-block;
   margin-left: .1rem;
-  font-weight: bold;
+  font-family: "Bitstream Vera Sans Mono"; // prevent emoji-fication
+  font-size: 85%;
+  @include underline(5px, #ccc);
 }
 
 // List of footnotes
 .footnotes {
-  margin-top: 2rem;
+  margin-top: 3rem;
   font-size: 85%;
 }
 

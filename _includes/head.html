@@ -8,7 +8,7 @@
     {% if page.title == "Home" %}
       {{ site.title }}
     {% else %}
-      {{ page.title }} - {{ site.title }}
+      {{ page.title | strip_html }} - {{ site.title }}
     {% endif %}
   </title>
 
