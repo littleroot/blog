@@ -44,7 +44,7 @@ func cStrings(elems []string) (result **C.char, free func()) {
 And usage looks like:
 
 ```go
-// extern void some_func(char** v);
+// extern void some_func(int count, char** v);
 import "C"
 
 func run() {
@@ -58,6 +58,6 @@ func run() {
     cstrs, free := cStrings(a)
     defer free()
 
-    C.some_func(cstrs)
+    C.some_func(len(a), cstrs)
 }
 ```
