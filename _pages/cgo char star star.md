@@ -44,12 +44,10 @@ func cStrings(elems []string) (result **C.char, free func()) {
 And usage looks like:
 
 ```go
-package main
-
 // extern void some_func(char** v);
 import "C"
 
-func main() {
+func run() {
     a := []string{
         "hello",
         ", ",
