@@ -263,8 +263,10 @@ a[href^="#fnref:"] {
   font-weight: 300;
 }
 
-.highlight .c { color: #999; } /* Comment */
-.highlight .cm { color: #09f; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #099 } /* Comment.Preproc */
-.highlight .c1 { color: #999; } /* Comment.Single */
-.highlight .cs { color: #999; } /* Comment.Special */
+// Minimal syntax.
+.highlight .c { color: #acb6bf; } /* Comment */
+.highlight .cm { color: #acb6bf; } /* Comment.Multiline */
+.highlight .cp { color: #acb6bf; } /* Comment.Preproc */
+.highlight .c1 { color: #acb6bf; } /* Comment.Single */
+.highlight .cs { color: #acb6bf; } /* Comment.Special */
+.highlight .kt { text-decoration: underline; } /* Keyword.Type */

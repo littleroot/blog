@@ -7,8 +7,8 @@ permalink: /translate-bind-do/
 Let's define some types and functions we can use for illustration.
 
 The code is adapted from the Haskell Wikibook[^1], § 32.3. (It is free,
-and I heartily recommend it compared to learnyouahaskell.com if you're
-looking for a starter book.)
+and I heartily recommend it compared to learnyouahaskell.com
+as a starter book.)
 
 ```hs
 type Board = Int -- represents current game configuration
@@ -68,7 +68,7 @@ Compare the last two code snippets visually.
 
 The lambda argument names (`x` and `y`) become the assignment variable
 names (`x` and `y`) in do-notation. The `nextConfigs <board>` function
-calls become the action in each line in do-notation.
+calls become calls in individual lines in do-notation.
 
 ## The translation: Step-by-step
 
@@ -111,7 +111,7 @@ To get some inuition try adding this debug line in the middle of the
   traceM (show x) -- from Debug.Trace
 ```
 
-Also try the code with other monads such as Maybe.
+Also try the code with other monads such as `Maybe`.
 
 ```hs
 nextConfigs :: Board -> Maybe Board
