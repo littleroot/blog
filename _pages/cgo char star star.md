@@ -47,14 +47,7 @@ And usage looks like:
 // extern void some_func(int count, char** v);
 import "C"
 
-func run() {
-    a := []string{
-        "hello",
-        ", ",
-        "world",
-        "!",
-    }
-
+func someFunc(a []string) {
     cstrs, free := cStrings(a)
     defer free()
 
