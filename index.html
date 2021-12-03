@@ -3,6 +3,7 @@ layout: default
 title: Home
 ---
 
+<main>
 {% if site.data.pages.filenames.size %}
 <div class="posts index">
   <ul>
@@ -20,6 +21,7 @@ title: Home
 {% else %}
 <p>No posts.</p>
 {% endif %}
+</main>
 
 <footer class="footer">
   {% include copyright.html %}
