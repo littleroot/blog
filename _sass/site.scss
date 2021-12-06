@@ -32,6 +32,10 @@ a {
   }
 }
 
+.no-underline {
+  @include no-underline();
+}
+
 img {
   display: block;
   max-width: 100%;
