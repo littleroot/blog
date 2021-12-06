@@ -29,7 +29,7 @@ The first two scenarios are described in [Uber's Go style guide][1]. To
 summarize the first scenario, use the prefixes `Err` or `err` for
 declared error variables, as in:
 
-```
+```go
 var ErrFormat = errors.New("zip: not a valid zip file")
 var errLongName = errors.New("zip: FileHeader.Name too long")
 ```
@@ -39,7 +39,7 @@ var errLongName = errors.New("zip: FileHeader.Name too long")
 Use the name `Error` or the suffix `Error` for declared error types, as
 in:
 
-```
+```go
 package url // import "net/url"
 
 type Error struct {
@@ -55,7 +55,7 @@ func (e *Error) Temporary() bool
 
 Or as in:
 
-```
+```go
 package os // import "os"
 
 type LinkError struct {
@@ -75,7 +75,7 @@ An assigned error variable, for the purpose of this post, is a variable
 that holds a returned error. For example, `err` is an assigned error
 variable below.
 
-```
+```go
 n, err := w.Write(p)
 ```
 
@@ -99,7 +99,7 @@ regardless of whether the Write succeeds. Additionally, the function
 wants to return any error, either from the Write or the Close, with a
 Write error taking precedence over a Close error.
 
-```
+```go
 func Cache(w io.WriteCloser, data []byte) error {
     _, err := w.Write(data)
     _, err1 := w.Close()
@@ -122,7 +122,7 @@ If the assigned error variable is in the file-scope it is
 appropriate and improves readability to use a more specific name
 such as `setupErr`. For example:
 
-```
+```go
 package pax
 
 var (
@@ -160,7 +160,7 @@ character of the target error type.
 
 For example, `perr` for `PathError`, as in:
 
-```
+```go
 var perr *fs.PathError
 if errors.As(err, &perr) {
     log.Fatal(perr.Path)
@@ -171,7 +171,7 @@ As a special case, consider avoiding the name `eerr`.
 
 Single character names such as `e` are okay in this scenario, as in:
 
-```
+```go
 func main() {
     if err := run(); err != nil {
         var e exitCodeError
@@ -184,15 +184,17 @@ func main() {
 }
 ```
 
+Do not reuse the variable name `err`.
+
 ## 7. Method receivers
 
 Use one or two character-long variable names, as you typically would
 for a receiver name.
 
-```
+```go
 type MyError struct {}
 
-func (m *MyError) Error() string { /* body elided */ }
+func (m *MyError) Error() string
 ```
 
 The names `e` or `me` are also appropriate for this example, but avoid
@@ -203,7 +205,7 @@ names such as `merr`, `err`, or `myErr`.
 In named returns, use the name `err`. Use documentation to discuss
 what the error represents.
 
-```
+```go
 func (c *Cbuf) Write(p []byte) (n int, err error)
 ```
 
