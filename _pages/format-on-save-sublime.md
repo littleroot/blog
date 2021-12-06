@@ -4,6 +4,13 @@ layout: page
 permalink: /format-on-save-sublime/
 ---
 
+_Update_: I've seen a better working alternative. Use this [custom
+command][4]. It's a stand-in replacement for `exec`, except that it
+expands variables.
+
+_Update 2_: For Haskell specifically, you may be better
+off using LSP for formatting in Sublime.
+
 The [Hooks](https://github.com/twolfson/sublime-hooks) package for
 Sublime Text provides a hook called `on_post_save_async_language`, which
 you can use to run a Sublime Text command (mind, not directly a binary
@@ -64,13 +71,6 @@ Now all that's left is to call this custom command on save:
             "scope": "window",
         },
     ],
-
-_Update_: I've seen a better working alternative. Use this [custom
-command][4]. It's a stand-in replacement for `exec`, except that it
-expands variables.
-
-_Update 2_: For Haskell specifically, you may be better
-off using LSP for formatting in Sublime.
 
 [2]: https://www.sublimetext.com/docs/build_systems.html#variables
 [3]: https://www.sublimetext.com/docs/api_reference.html#sublime.View

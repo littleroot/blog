@@ -4,6 +4,9 @@ layout: page
 permalink: /pkg.go.dev-color-schemes/
 ---
 
+_Update_: There is a working color scheme switcher button at the bottom
+of the page now.
+
 The [pkg.go.dev](https://pkg.go.dev) site currently picks either a light color
 scheme or a dark color scheme based on the user agent-provided
 `prefers-color-scheme` setting (typically this is based on your
@@ -30,8 +33,5 @@ color scheme is dark.
 The cookies were once being used to let users toggle the color
 scheme, but the feature was [rolled back][1] due to an issue. But the
 cookies still work partially.
-
-_Update_: There is a color scheme switcher button at the bottom
-of the page now.
 
 [1]: https://github.com/golang/pkgsite/commit/a0af5929e0f9b881e04e37c80ce9dfb1d2dc36f2
