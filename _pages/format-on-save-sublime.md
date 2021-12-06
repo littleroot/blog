@@ -69,6 +69,9 @@ _Update_: I've seen a better working alternative. Use this [custom
 command][4]. It's a stand-in replacement for `exec`, except that it
 expands variables.
 
+_Update 2_: For Haskell specifically, you may be better
+off using LSP for formatting in Sublime.
+
 [2]: https://www.sublimetext.com/docs/build_systems.html#variables
 [3]: https://www.sublimetext.com/docs/api_reference.html#sublime.View
 [4]: https://github.com/STealthy-and-haSTy/SublimeScraps/blob/e534d359c3317e234d728782c1b841cbe175ac70/plugins/menu_exec.py

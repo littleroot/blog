@@ -118,8 +118,8 @@ assigned variables are far apart or in a longer function.
 
 ## 5. Assigned error variables (file scope)
 
-If the assigned error variable is in the file-scope it is
-appropriate and improves readability to use a more specific name
+If the assigned error variable is in file-scope it is
+appropriate and it improves readability to use a more specific name
 such as `setupErr`. For example:
 
 ```go
@@ -202,8 +202,8 @@ names such as `merr`, `err`, or `myErr`.
 
 ## 8. Named returns and function parameters
 
-In named returns, use the name `err`. Use documentation to discuss
-what the error represents.
+In named returns and function parameters, use the name `err`. Use
+documentation to discuss what the error represents.
 
 ```go
 func (c *Cbuf) Write(p []byte) (n int, err error)
