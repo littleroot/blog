@@ -204,7 +204,7 @@ In named returns, use the name `err`. Use documentation to discuss
 what the error represents.
 
 ```
-func (c *Cbuf) Write(b []byte) (n int, err error)
+func (c *Cbuf) Write(p []byte) (n int, err error)
 ```
 
 If there are multiple error return values or function parameters, use
