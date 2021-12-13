@@ -75,7 +75,7 @@ func validatedWrite(p []byte, w io.Writer) (int, error) {
     if m < len(p) && err == nil {
         return m, io.ErrShortWrite
     }
-    return m, nil
+    return m, err
 }
 ```
 
