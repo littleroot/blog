@@ -202,15 +202,23 @@ names such as `merr`, `err`, or `myErr`.
 
 ## 8. Named returns and function parameters
 
-In named returns and function parameters, use the name `err`. Use
-documentation to discuss what the error represents.
+In named returns, use the name `err`. Use documentation to discuss what
+the error represents.
 
 ```go
 func (c *Cbuf) Write(p []byte) (n int, err error)
 ```
 
-If there are multiple error return values or function parameters, use
+A return name such as `outerr` is okay, too, in my opinion
+if you're checking for an error in a deferred function or have
+several variables named `err` in the function body.
+
+If there are multiple error return values, use
 more specific names for *all* of them.
+
+The same applies to function parameter naming. In most cases you
+won't have more than one error parameter in a function, and so the
+name `err` should work in most scenarios.
 
 [1]: https://github.com/uber-go/guide/blob/master/style.md#error-naming
 [2]: https://cs.opensource.google/go/go/+/master:src/cmd/gofmt/gofmt.go;l=493-495;drc=1ce6fd03b8a72fd8346fb23a975124edf977d25e

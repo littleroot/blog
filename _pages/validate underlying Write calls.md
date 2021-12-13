@@ -1,5 +1,5 @@
 ---
-title: "Validate your <code>Writes</code> and <code>Reads</code> to underlying <code>io.Writers</code> and <code>io.Readers</code>"
+title: "Validate <code>Writes</code> and <code>Reads</code> to underlying <code>io.Writers</code> and <code>io.Readers</code>"
 layout: page
 permalink: /validate-io-writer-writes/
 ---
