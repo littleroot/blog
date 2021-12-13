@@ -15,7 +15,7 @@ package gzip // import "compress/gzip"
 
 type Writer struct { ... }
 
-func NewWriter(w `io.Writer`) *Writer
+func NewWriter(w io.Writer) *Writer
 func (z *Writer) Write(p []byte) (int, error)
 ```
 
@@ -74,7 +74,7 @@ func validatedWrite(p []byte, w io.Writer) (int, error) {
 }
 ```
 
-## Readers
+## Reads
 
 Same goes for `io.Reader`s and `Read` calls too!
 
