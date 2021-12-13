@@ -1,4 +1,5 @@
 filenames:
+  - "validate underlying Write calls.md"
   - "go error naming convention.md"
   - "cgo char star star.md"
   - "translate bind to do.md"

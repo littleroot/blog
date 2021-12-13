@@ -21,7 +21,7 @@ There are 8 naming scenarios.
 
 In addition to these guidelines, never shadow the predeclared
 identifier `error`. Use a linter such as [predeclared][3] to catch
-these.
+this.
 
 ## 1. Declared error variables
 

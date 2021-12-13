@@ -251,6 +251,7 @@ a[href^="#fnref:"] {
   display: inline-block;
   margin-left: .1rem;
   font-family: $code-font; // prevent emoji-fication
+  font-size: 85%;
   @include underline(5px, #ccc);
 }
 
