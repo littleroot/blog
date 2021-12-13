@@ -1,4 +1,4 @@
-.PHONY: b pub s
+.PHONY: b p s
 
 b:
 	bundle exec jekyll b
@@ -6,7 +6,7 @@ b:
 s:
 	bundle exec jekyll s
 
-pub:
+p:
 	git add -A
-	git commit -m "pub"
+	git commit -m "auto-generated commit by 'make p'"
 	git push
