@@ -29,8 +29,13 @@ accidentally or because of a true bug in its implementation.
 If you propagate `(n, err)` return values from an incorrect
 underlying Writer in your own Writer without checking, as in:
 
-```
+```go
+package me
+
+type Writer struct{ w io.Writer }
+
 func (w *Writer) Write(p []byte) (int, error) {
+    // NOTE: w.w is the underlying io.Writer
     return w.w.Write(p)
 }
 ```
