@@ -45,7 +45,7 @@ misbehaving Writer, because the bug is propagated instead of being
 detected at the earliest. Additionally your `Write` method too now
 violates the `io.Writer` interface.
 
-So it helps to validate the return value of Write calls to the underlying
+So it helps to validate the return values of Write calls to the underlying
 Writer.
 
 ## Validating a Write
