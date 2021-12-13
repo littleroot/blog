@@ -8,8 +8,6 @@ Go programmers—those who work on the Go programming language itself and
 those who write programs using Go—have developed a few not-oft-spoken
 conventions for naming error variables and error types.
 
-There are 8 naming scenarios.
-
   1. <a class="no-underline" href="#1-declared-error-variables">Declared error variables</a>
   1. <a class="no-underline" href="#2-declared-error-types">Declared error types</a>
   1. <a class="no-underline" href="#3-assigned-error-variables-regular">Assigned error variables (regular)</a>
@@ -149,7 +147,7 @@ func Read() error {
 }
 ```
 
-Note that we do *not* want the names `setupErr` or `setupError`; these
+Note that we do *not* want the names `errSetup` or `setupError`; these
 names conflict with scenarios 1 and 2, respectively.
 
 ## 6. `errors.As` variables
