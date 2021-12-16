@@ -6,7 +6,7 @@
 }
 
 @mixin no-underline() {
-  @include underline(5px, rgba(204, 204, 204, .5)); // #ccc with alpha
+  @include underline(5px, rgba(204, 204, 204, .7)); // #ccc with alpha
   &:hover {
     background-image: linear-gradient(transparent, transparent 4px, $link-blue 4px, $link-blue);
   }

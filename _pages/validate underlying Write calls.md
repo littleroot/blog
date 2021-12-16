@@ -22,12 +22,13 @@ func (z *Writer) Write(p []byte) (int, error)
 ## Misbehaving Writers
 
 If you implement an `io.Writer` that wraps another `io.Writer` it helps
-to check for misbehaving Writers. An incorrect `io.Writer`, for example,
-is one that returns a `nil` error along with `n < len(p)`[^1] either
-accidentally or because of a true bug in its implementation.
+to check for misbehaving Writers. An incorrect underlying `io.Writer`,
+for example, is one that return a `nil` error along with `n <
+len(p)`[^1] either accidentally or because of a true bug in its
+implementation.
 
-If you propagate `(n, err)` return values from an incorrect
-underlying Writer in your own Writer without checking, as in:
+If you propagate `n, err` return values from an incorrect
+underlying Writer without checking, as in:
 
 ```go
 package me
@@ -35,7 +36,6 @@ package me
 type Writer struct{ w io.Writer }
 
 func (w *Writer) Write(p []byte) (int, error) {
-    // NOTE: w.w is the underlying io.Writer
     return w.w.Write(p)
 }
 ```
