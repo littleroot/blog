@@ -21,15 +21,15 @@ are notes on them below.
 
 ```
 # partition	encrypted	fstype	      size	mountpoint	type
-1 efi		       no	  vfat	      512M	/efi		ef00
-2 boot		    luks1	  vfat	      512M	/boot		8300
-3 root		    luks2	  ext4	    46080M	/		8300
-4 swap		    luks2	  swap	    16384M	[SWAP]		8200
-5 keys		    luks2	  ext4	        8M	/keys		8300
-6 suspendroot	       no	  ext4	       64M	/suspendroot	8300
-7 tmp		    luks2	  ext4	     4096M	/tmp		8300
-8 var		    luks2	  ext4	    30720M	/var		8300
-9 home		    luks2	  ext4	 remaining	/home		8300
+TODO efi?
+1 boot		    luks1	  vfat	      512M	/boot		TODO
+2 root		    luks2	  ext4	    46080M	/		8300
+3 swap		    luks2	  swap	    16384M	[SWAP]		8200
+4 keys		    luks2	  ext4	        8M	/keys		8300
+5 suspendroot	       no	  ext4	       64M	/suspendroot	8300
+6 tmp		    luks2	  ext4	     4096M	/tmp		8300
+7 var		    luks2	  ext4	    30720M	/var		8300
+8 home		    luks2	  ext4	 remaining	/home		8300
 ```
 
 ### Boot
@@ -108,9 +108,9 @@ cryptsetup luksAddKey /dev/nvme0n1p<N> cryptkeys.key
 
 Open the encrypted devices, make filesystems on the mapped devices, and
 mount or swapon. The options with which you open and mount right now
-don't matter (so supply none).
+don't really matter.
 
-[^2]: This uses [LUKS on a partition](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LUKS_on_a_partition).
+[^2]: This uses [LUKS on a partition](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LUKS_on_a_partition)
 [^3]: https://security.stackexchange.com/questions/40208
 
 ## Keyfiles
@@ -138,7 +138,6 @@ at:
 ```
 /root/cryptkeys.key
 ```
-
 
 ## Install
 
@@ -209,20 +208,22 @@ device	dir	type	options		dump	fsck
 
 ## initramfs
 
-In `/etc/mkinitcpio.conf` configure initramfs to
-embed the keys partition keyfile and update the `HOOKS`.
+The install uses a busybox-based initramfs.
+
+Configure the initramfs image in `/etc/mkinitcpio.conf`: embed keys
+partition keyfile, and update `HOOKS`.
 
 ```
 FILES=(/root/cryptkeys.key)
 HOOKS=(base udev autodetect keyboard keymap consolefont modconf block keysencrypt filesystems fsck)
 ```
 
-`keysencrypt` is a custom hook; get it using git,
-and configure it.
+`keysencrypt` is a custom hook; install and configure it.
 
 ```
-git clone --depth=1 https://github.com/littleroot/archutil
-TODO
+# git clone --depth=1 https://github.com/littleroot/archutil
+# cd archutil
+... Follow README ...
 ```
 
 Regenerate initramfs image:
@@ -235,13 +236,16 @@ mkinitcpio --allpresets
 ### Encrypted boot
 
 Grub has to learn that the encrypted boot partition needs to be
-unlocked. Grub can handle luks1 encrypted devices. In
-`/etc/default/grub`:
+unlocked. In `/etc/default/grub`:
 ```
 GRUB_ENABLE_CRYPTODISK=y
 ```
 
 ### Install new grub bootloader
+
+Mount EFI partition. Install new core.img.
+
+TODO
 
 ```
 # mkdir /efi
@@ -272,7 +276,9 @@ microcode updates.
 
 ## Safe suspend-to-memory
 
-TODO: suspendroot
+This can be done after.
+
+TODO(ns): suspendroot
 
 
 
@@ -294,98 +300,13 @@ TODO: suspendroot
 
 
 
-The install uses a busybox-based initramfs.
 
 
-
-[2]: https://security.stackexchange.com/questions/40208/recommended-options-for-luks-cryptsetup
-
-## TODO
-
-### /usr as a separate partition
-
-https://wiki.archlinux.org/title/Mkinitcpio#/usr_as_a_separate_partition
-
-If you keep /usr as a separate partition, you must adhere to the following requirements:
-Add the fsck hook, mark /usr with a passno of 2 in /etc/fstab to run the check on the partition at startup. While recommended for everyone, it is mandatory if you want your /usr partition to be fsck'ed at boot-up. Without this hook, /usr will never be fsck'd.
-If not using the systemd hook, add the usr hook. This will mount the /usr partition after root is mounted.
-
-run_latehook: Functions of this name are run after the root device has been mounted. This should be used, sparingly, for further setup of the root device, or for mounting other file systems, such as /usr.
-
-### cryptsetup params
-
-cryptsetup --type luks2 --cipher aes-xts-plain64 --hash sha256 --iter-time 2000 --key-size 256 --pbkdf argon2id --use-urandom --verify-passphrase luksFormat device
-
-### Enable microcode
-
-See grub section.
-
-https://wiki.archlinux.org/title/Microcode
-
-### TRIM
-
-enable TRIM when luks decryption open options is involved
-https://wiki.archlinux.org/title/Dm-crypt/Specialties#Discard/TRIM_support_for_solid_state_drives_(SSD)
-
-against trim: https://unix.stackexchange.com/a/532615/151000
-use `fstrim` periodically instead
-
-### options for crypttab
-
-luks option in 4th column?
-
-### suspend
-
-remove keys;
-resume should be possible using swap;
-hard to do when using root partition currently before suspend
-luksResume, luksSuspend
-https://waaaaargh.github.io/gnu&linux/2013/08/06/lukssuspend-with-encrypted-root-on-archlinux/
-
-also need work on combining suspend to memory instructions
-with suspend to disk.
-
-### encrypted swap cannot be resumed from suspend
-
-only only device can be uncloked by encrypt hook (the root device)
-so need mkinitcpio manual work
-https://wiki.archlinux.org/title/Dm-crypt/Swap_encryption#mkinitcpio_hook
-and do not automount for swap parition (attr 63)
-
-### Encrypted /boot
-
-https://wiki.archlinux.org/title/GRUB#Encrypted_/boot
-https://wiki.archlinux.org/title/Dm-crypt/Device_encryption#With_a_keyfile_embedded_in_the_initramfs
 
 ### Use a separate "keys" partition
 
 technique, see hook: https://github.com/ajs124/decrypt-initcpio
 original encrypt hook: https://github.com/archlinux/svntogit-packages/tree/packages/cryptsetup/trunk
-
-### Disable workqueue for increased solid state drive (SSD) performance
-
-Solid state drive users should be aware that, by default, discarding internal read and write workqueue commands are not enabled by the device-mapper, i.e. block-devices are mounted without the no_read_workqueue and no_write_workqueue option unless you override the default.
-
-The no_read_workqueue and no_write_workqueue flags were introduced by internal Cloudflare research Speeding up Linux disk encryption made while investigating overall encryption performance. One of the conclusions is that internal dm-crypt read and write queues decrease performance for SSD drives. While queuing disk operations makes sense for spinning drives, bypassing the queue and writing data synchronously doubled the throughput and cut the SSD drives' IO await operations latency in half. The patches were upstreamed and are available since linux 5.9 and up [5].
-
-To disable workqueue for LUKS devices unlocked via crypttab use one or more of the desired no-read-workqueue or no-write-workqueue options. E.g.:
-```
-/etc/crypttab
-luks-123abcdef-etc UUID=123abcdef-etc none no-read-workqueue
-```
-To disable both read and write workqueue add both flags:
-```
-/etc/crypttab
-luks-123abcdef-etc UUID=123abcdef-etc none no-read-workqueue,no-write-workqueue
-```
-With LUKS2 you can set --perf-no_read_workqueue and --perf-no_write_workqueue as default flags for a device by opening it once with the option --persistent. For example:
-```
-# cryptsetup --perf-no_read_workqueue --perf-no_write_workqueue --persistent open /dev/sdaX root
-```
-When the device is already opened, the open action will raise an error. You can use the refresh option in these cases, e.g.:
-```
-# cryptsetup --perf-no_read_workqueue --perf-no_write_workqueue --persistent refresh root
-```
 
 ### attribute 63 (do not automount)
 
