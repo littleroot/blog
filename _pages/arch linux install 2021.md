@@ -20,17 +20,19 @@ are notes on them below.
 <center>Table 1. Partitions</center>
 
 ```
-# partition	encrypted	fstype	      size	mountpoint	type
-TODO efi?
-1 boot		    luks1	  vfat	      512M	/boot		TODO
-2 root		    luks2	  ext4	    46080M	/		8300
-3 swap		    luks2	  swap	    16384M	[SWAP]		8200
-4 keys		    luks2	  ext4	        8M	/keys		8300
-5 suspendroot	       no	  ext4	       64M	/suspendroot	8300
-6 tmp		    luks2	  ext4	     4096M	/tmp		8300
-7 var		    luks2	  ext4	    30720M	/var		8300
-8 home		    luks2	  ext4	 remaining	/home		8300
+# partition	encrypted	fstype	      size	mountpoint	type	guid
+1 efi		       no	 fat12	      128M	/efi		ef00	C12A7328-F81F-11D2-BA4B-00A0C93EC93B
+2 boot		    luks1	  ext4	      256M	/boot		8300	auto
+3 root		    luks2	  ext4	    46080M	/		8300	auto
+4 swap		    luks2	  swap	    16384M	[SWAP]		8200	auto
+5 keys		    luks2	  ext4	        8M	/keys		8300	auto
+6 suspendroot	       no	  ext4	       64M	/suspendroot	8300	auto
+7 tmp		    luks2	  ext4	     4096M	/tmp		8300	auto
+8 var		    luks2	  ext4	    30720M	/var		8300	auto
+9 home		    luks2	  ext4	 remaining	/home		8300	auto
 ```
+
+The partition scheme assumes you have a GPT/UEFI computer.
 
 ### Boot
 
@@ -41,17 +43,18 @@ Boot uses luks1, because core images created by `grub-install` in grub
 
 ### Keys
 
-Keys is an encrypted partition that holds encryption
-keyfiles for root and swap partitions. The encryption keyfile for the
-keys partition itself is embedded in initramfs. From a cold boot or when
-resuming from hibernate, to unlock the boot partition you need to enter
-the boot partition's encryption password. After the boot partition is
-unlocked, the keys partition is automatically unlocked using the
-embedded keyfile in initramfs. A custom `keysencrypt` hook, a
-replacement intended to address the shortcomings of the `encrypt` hook,
-then automatically unlocks root and swap using the keyfiles in the keys
-partition (side note: when resuming from hibernate, it should be
-sufficient to only unlock swap).
+Keys is an encrypted partition that holds encryption keyfiles for root
+and swap partitions. The encryption keyfile for the keys partition
+itself is embedded in initramfs. From a cold boot or when resuming from
+hibernate, to unlock the boot partition you need to enter the boot
+partition's encryption password. After the boot partition is unlocked,
+the keys partition is automatically unlocked using the embedded keyfile
+in initramfs. A custom `keysencrypt` hook, a replacement intended to
+address the shortcomings of the `encrypt` hook, then automatically
+unlocks root and swap using the keyfiles in the keys partition (side
+note: when resuming from hibernate, it should be sufficient to only
+unlock swap, and it's also unclear to me right now whether `cryptsetup
+luksOpen <root>` twice is safe).
 
 The keys partition is closed and unmounted before entering the real
 root and stays unmounted—this is vital so that it can be safely mounted
@@ -76,6 +79,8 @@ and `luksSuspend` the root partition device from there.
 Use `gdisk` and verify with `lsblk`.
 
 ### Prepare partitions[^2]
+
+Create the efi partition if it does not exist.
 
 For boot, encrypt using luks1:
 
@@ -106,9 +111,9 @@ dd bs=512 count=4 iflag=fullblock if=/dev/random of=cryptkeys.key
 cryptsetup luksAddKey /dev/nvme0n1p<N> cryptkeys.key
 ```
 
-Open the encrypted devices, make filesystems on the mapped devices, and
-mount or swapon. The options with which you open and mount right now
-don't really matter.
+Open the encrypted devices, make filesystems, and mount or swapon all
+partitions 1–n. The options with which you open and mount right now
+don't really matter, you can edit `/etc/{crypttab,fstab}` later.
 
 [^2]: This uses [LUKS on a partition](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LUKS_on_a_partition)
 [^3]: https://security.stackexchange.com/questions/40208
@@ -148,7 +153,8 @@ to download the `keysencrypt` hook. Include `intel-ucode`, `amd-ucode`,
 or nothing, depending on your processor for microcode updates.
 
 ```
-# pacstrap /mnt base linux linux-firmware git grub efibootmgr
+# pacstrap /mnt base linux linux-firmware git grub efibootmgr \
+	sof-firmware man-db man-pages
 ```
 
 ### Change to new system
@@ -180,12 +186,13 @@ Uncomment `en_US.UTF-8` and `UTF-8` in `/etc/locale.gen`. Then:
 
 Use `lsblk -f` to find the UUIDs (these are the UUIDs of the encrypted
 partitions, not the mapped ones). The options are:
-`luks,no-read-workqueue,no-write-workqueue,discard`.
+`luks,no-read-workqueue,no-write-workqueue`.
 
-Note there is no entry for swap; it is unlocked in initramfs. The keys
-partiton is not necessary in everyday usage, so it is omitted. We want
-to unlock boot automatically to cater to system updates that require the
-boot partition to be present.
+Note there is no entry for swap as it is unlocked in initramfs. There is
+no entry for `root`, it should already be unlocked by the point
+`/etc/crypttab` is used. The keys partiton is not necessary in everyday
+usage, so it is omitted. We want to unlock boot automatically to cater
+to system updates that require the boot partition to be present.
 
 ```
 cryptboot	UUID=<uuid>	/etc/cryptsetup-keys.d/cryptboot.key	<options>
@@ -197,10 +204,9 @@ crypthome	UUID=<uuid>	/etc/cryptsetup-keys.d/crypthome.key	<options>
 ## Edit /etc/fstab
 
 With the mapped devices mounted and the mapped swap device swapped on,
-print a workable fstab with `genfstab`. Remove the keys partition's
-entry; we don't unlock it and don't want to mount it. Write the
-remaining entries for root, boot, swap, suspendroot, tmp, var, and home
-in this order to `/etc/fstab`. For reference, the field format is
+print a workable fstab with `genfstab -U`. Write only the
+entries for root, boot, swap, suspendroot, tmp, var, and home in this
+order to `/etc/fstab`. For reference, the format is
 
 ```
 device	dir	type	options		dump	fsck
@@ -208,10 +214,9 @@ device	dir	type	options		dump	fsck
 
 ## initramfs
 
-The install uses a busybox-based initramfs.
-
-Configure the initramfs image in `/etc/mkinitcpio.conf`: embed keys
-partition keyfile, and update `HOOKS`.
+The install uses a busybox-based initramfs. Configure the initramfs cpio
+archive in `/etc/mkinitcpio.conf`: embed keys partition keyfile, and
+update `HOOKS`.
 
 ```
 FILES=(/root/cryptkeys.key)
@@ -229,6 +234,7 @@ HOOKS=(base udev autodetect keyboard keymap consolefont modconf block keysencryp
 Regenerate initramfs image:
 ```
 mkinitcpio --allpresets
+chmod 000 /boot/initramfs-linux*
 ```
 
 ## Bootloader
@@ -243,13 +249,10 @@ GRUB_ENABLE_CRYPTODISK=y
 
 ### Install new grub bootloader
 
-Mount EFI partition. Install new core.img.
-
-TODO
+Install new grub `core.img` to the efi partition. Change `--target`
+according to the processor.
 
 ```
-# mkdir /efi
-# mount /dev/nvme0n1<n> /efi
 # grub-install --target=x86_64-efi \
 	--efi-directory=/efi \
 	--boot-directory=/boot \
@@ -267,8 +270,8 @@ swap=/dev/mapper/cryptswap
 
 ### Generate grub config
 
-Re-generate main grub config file. This re-generation accounts for the
-boot partition decryption, the kernel parameters, and to activate
+Re-generate main grub config file. This re-generation accounts for
+boot decryption, the kernel parameters, and to activate
 microcode updates.
 ```
 # grub-mkconfig -o /boot/grub/grub.cfg
@@ -276,7 +279,8 @@ microcode updates.
 
 ## Safe suspend-to-memory
 
-This can be done after.
+This can be done after a full install, after installing a desktop
+environment and/or a window manager.
 
 TODO(ns): suspendroot
 
@@ -287,12 +291,6 @@ TODO(ns): suspendroot
 
 
 
-
-
-
-
-
----
 
 
 
@@ -311,3 +309,7 @@ original encrypt hook: https://github.com/archlinux/svntogit-packages/tree/packa
 ### attribute 63 (do not automount)
 
 For swap necessary? (ref: https://wiki.archlinux.org/title/Dm-crypt/Swap_encryption#mkinitcpio_hook)
+
+### check if boot is compromised
+
+https://wiki.archlinux.org/title/Dm-crypt/Specialties#mkinitcpio-chkcryptoboot
