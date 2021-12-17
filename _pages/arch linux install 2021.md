@@ -283,33 +283,3 @@ This can be done after a full install, after installing a desktop
 environment and/or a window manager.
 
 TODO(ns): suspendroot
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Use a separate "keys" partition
-
-technique, see hook: https://github.com/ajs124/decrypt-initcpio
-original encrypt hook: https://github.com/archlinux/svntogit-packages/tree/packages/cryptsetup/trunk
-
-### attribute 63 (do not automount)
-
-For swap necessary? (ref: https://wiki.archlinux.org/title/Dm-crypt/Swap_encryption#mkinitcpio_hook)
-
-### check if boot is compromised
-
-https://wiki.archlinux.org/title/Dm-crypt/Specialties#mkinitcpio-chkcryptoboot
